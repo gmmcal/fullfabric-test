@@ -28,20 +28,25 @@ describe Player do
   end
 
   context 'attack' do
-    let(:die) { double('die', value: 10) }
+    let(:sides) { 10 }
+    let(:die) { double('die', sides: sides, roll: 10) }
+    let(:attack_point) { player.attack(die) }
 
     it 'should receive a die and return an attack point' do
-      attack_point = player.attack(die)
       expect(attack_point).to be_a(Integer)
     end
 
     it 'attacks with a value greater than zero' do
-      attack_point = player.attack(die)
       expect(attack_point).to be > 0
     end
 
-    it 'attacks with a value less than the die value' do
+    it 'attacks with a value less than the sides limit' do
+      expect(attack_point).to be <= sides
+    end
 
+    it 'attacks with a random value' do
+      allow(die).to receive(:roll) { 5 }
+      expect(attack_point).to eq(5)
     end
   end
 end

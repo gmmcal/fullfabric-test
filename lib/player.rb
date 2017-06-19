@@ -10,6 +10,6 @@ class Player
   end
 
   def attack(die)
-    1
+    die.roll
   end
 end
