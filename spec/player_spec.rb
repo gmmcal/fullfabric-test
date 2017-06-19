@@ -58,4 +58,11 @@ describe Player do
       expect(player.method(:defend)).to eq(player.method(:attack))
     end
   end
+
+  context 'withdraw_damage!' do
+    it 'should withdraw life points from player' do
+      player.withdraw_damage!(5)
+      expect(player.life_points).to eq(15)
+    end
+  end
 end

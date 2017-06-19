@@ -23,13 +23,17 @@ describe Round do
   it { expect(subject.defense_die).to_not be_nil }
 
   describe '.fight' do
-    it 'attacker attacks using attack die' do
-      expect(subject.attacker).to receive(:attack).with(subject.attack_die)
+    it 'when attack points is greater than defense points, applies damage to defender' do
+      allow(subject.attacker).to receive(:attack) { 10 }
+      allow(subject.defender).to receive(:defend) { 5 }
+      expect(subject.defender).to receive(:withdraw_damage!).with(5)
       subject.fight
     end
 
-    it 'defender defends using defense die' do
-      expect(subject.defender).to receive(:defend).with(subject.defense_die)
+    it 'when defense points is greater than attack points, no damage is applied' do
+      allow(subject.attacker).to receive(:attack) { 5 }
+      allow(subject.defender).to receive(:defend) { 10 }
+      expect(subject.defender).to_not receive(:withdraw_damage!)
       subject.fight
     end
   end

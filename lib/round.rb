@@ -14,7 +14,8 @@ class Round
   end
 
   def fight
-    attacker.attack(attack_die)
-    defender.defend(defense_die)
+    attack_points = attacker.attack(attack_die)
+    defense_points = defender.defend(defense_die)
+    defender.withdraw_damage!(attack_points - defense_points) if attack_points > defense_points
   end
 end

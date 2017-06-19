@@ -13,4 +13,8 @@ class Player
     die.roll
   end
   alias_method :defend, :attack
+
+  def withdraw_damage!(points)
+    @life_points -= points
+  end
 end
