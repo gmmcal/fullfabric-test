@@ -12,4 +12,5 @@ class Player
   def attack(die)
     die.roll
   end
+  alias_method :defend, :attack
 end

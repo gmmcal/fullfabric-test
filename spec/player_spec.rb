@@ -29,7 +29,7 @@ describe Player do
 
   context 'attack' do
     let(:sides) { 10 }
-    let(:die) { double('die', sides: sides, roll: 10) }
+    let(:die) { Die.new(sides) }
     let(:attack_point) { player.attack(die) }
 
     it 'should receive a die and return an attack point' do
@@ -47,6 +47,15 @@ describe Player do
     it 'attacks with a random value' do
       allow(die).to receive(:roll) { 5 }
       expect(attack_point).to eq(5)
+    end
+  end
+
+  context 'defend' do
+    let(:sides) { 10 }
+    let(:die) { Die.new(sides) }
+
+    it 'defend to be an alias of attack' do
+      expect(player.method(:defend)).to eq(player.method(:attack))
     end
   end
 end
