@@ -8,4 +8,8 @@ class Player
     @name = name
     @life_points = life_points
   end
+
+  def attack(die)
+    1
+  end
 end

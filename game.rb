@@ -1,1 +1,1 @@
-require_relative 'classes/all'
+require_relative 'lib/all'
